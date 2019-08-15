@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<script
+			type="text/javascript"
+			src="//www.opentable.com/widget/reservation/loader?rid=432&type=standard&theme=standard&iframe=false&overlay=false&domain=com&lang=en-US"
+		></script>
+		<script>
+			// need jquery CDN for this to work
+			// iframe needs to be set to false in the widget script
+			// times will hold the times you ONLY want to show
+			const times = ["12:00", "12:30", "13:00", "13:30"];
+
+			$(document).ready(function() {
+				console.log(typeof $("form").prevObject[0].all.Select_0);
+
+				$("#ot-widget-container1").on(
+					"mousedown",
+					".ot-time-picker",
+					function() {
+						$(this)
+							.find("option")
+							.each(function() {
+								if (times.includes($(this).val()) === false) {
+									$(this).remove();
+								}
+							});
+					}
+				);
+			});
+		</script>
+	</body>
+</html>
